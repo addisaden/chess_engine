@@ -12,6 +12,9 @@ module ChessEngine
     }
     def initialize(plain=false)
       @pieces = {}
+      @history = []
+      
+      # setup plain pieces
       [:black, :white].each do |color|
         @pieces[color] = {}
         SHORT.keys.each do |piece|
