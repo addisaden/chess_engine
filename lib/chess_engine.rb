@@ -1,16 +1,10 @@
 require "chess_engine/version"
+require "chess_engine/constants"
+require "chess_engine/output"
 
 module ChessEngine
   class Game
-    # with .invert you can switch key and value
-    SHORTNAME = {
-      :king => :K,
-      :queen => :Q,
-      :rook => :R,
-      :bishop => :B,
-      :knight => :N,
-      :pawn => :P
-    }
+    include ChessEngine::Output
 
     def initialize(plain=false)
       @pieces = {}
