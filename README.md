@@ -1,3 +1,5 @@
+### _Not finished yet_
+
 # ChessEngine
 
 TODO: Write a gem description
