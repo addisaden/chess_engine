@@ -4,12 +4,12 @@ module ChessEngine
   class Game
     # with .invert you can switch key and value
     SHORTNAME = {
-      :king => :k,
-      :queen => :q,
-      :rook => :r,
-      :bishop => :b,
-      :knight => :n,
-      :pawn => :p
+      :king => :K,
+      :queen => :Q,
+      :rook => :R,
+      :bishop => :B,
+      :knight => :N,
+      :pawn => :P
     }
 
     def initialize(plain=false)
