@@ -2,7 +2,8 @@ require "chess_engine/version"
 
 module ChessEngine
   class Game
-    SHORT = {
+    # with .invert you can switch key and value
+    SHORTNAME = {
       :king => :k,
       :queen => :q,
       :rook => :r,
@@ -10,14 +11,15 @@ module ChessEngine
       :knight => :n,
       :pawn => :p
     }
+
     def initialize(plain=false)
       @pieces = {}
       @history = []
-      
+
       # setup plain pieces
       [:black, :white].each do |color|
         @pieces[color] = {}
-        SHORT.keys.each do |piece|
+        SHORTNAME.keys.each do |piece|
           @pieces[color][piece] = []
         end
       end
