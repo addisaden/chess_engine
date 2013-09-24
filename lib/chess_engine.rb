@@ -10,12 +10,40 @@ module ChessEngine
       :knight => :n,
       :pawn => :p
     }
-    def initialize(clear=false)
+    def initialize(plain=false)
       @pieces = {}
       [:black, :white].each do |color|
         @pieces[color] = {}
         SHORT.keys.each do |piece|
           @pieces[color][piece] = []
+        end
+      end
+
+      standard_setup unless plain
+    end
+
+    private
+
+    def standard_setup
+      # setup pawns
+      { :black => 7, :white => 2 }.each do |color, row|
+        (?a..?h).each do |column|
+          @pieces[color][:pawn] << ["#{ column }#{ row }".to_sym]
+        end
+      end
+
+      { :black => 8, :white => 1 }.each do |color, row|
+        # setup king
+        @pieces[color][:king] << ["e#{ row }".to_sym]
+
+        # setup queen
+        @pieces[color][:queen] << ["d#{ row }".to_sym]
+
+        # setup rest
+        { :rook => [?a, ?h], :knight => [?b, ?g], :bishop => [?c, ?f] }.each do |piece, columns|
+          columns.each do |column|
+            @pieces[color][piece] << ["#{ column }#{ row }".to_sym]
+          end
         end
       end
     end
