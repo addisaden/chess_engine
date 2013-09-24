@@ -1,4 +1,4 @@
-Copyright (c) 2013 Adrian E.
+Copyright (c) 2013 Adrian Enns (addisaden)
 
 MIT License
 
