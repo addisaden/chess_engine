@@ -1,5 +1,3 @@
-require "chess_engine/constants"
-
 module ChessEngine
   module Helper
     def color
