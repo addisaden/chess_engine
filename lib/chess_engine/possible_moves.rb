@@ -7,22 +7,30 @@ module ChessEngine
       return possible_direction_moves(queen_directions, :queen, color)
     end
 
+    def possible_king_moves(color=self.color)
+      king_directions = [-1,0,1].product [-1,0,1]
+      king_directions.delete [0,0]
+      return possible_direction_moves(king_directions, :king, color, true)
+    end
+
     # King, Queen, Rook, Bishop - NOT Knight, Pawn
     def possible_direction_moves(directions, piece, color, one_step=false)
       current_positions = self.positions
-      result = []
+      result = {}
       short_name = SHORTNAME[piece]
 
-      direction_steps_helper(directions, piece, color) do |possible_move|
+      direction_steps_helper(directions, piece, color) do |current_position, possible_move|
         yield_result = one_step ? false : true
+
+        result[current_position] ||= []
 
         if current_positions.keys.include? possible_move then
           unless current_positions[possible_move][:color] == color then
-            result << "#{ short_name }x#{ possible_move }"
+            result[current_position] << "#{ short_name }x#{ possible_move }"
           end
           yield_result = false
         else
-          result << "#{ short_name }#{ possible_move }"
+          result[current_position] << "#{ short_name }#{ possible_move }"
         end
 
         yield_result # THIS IS IMPORTANT
@@ -43,7 +51,7 @@ module ChessEngine
               move_x = piece_step * direction[1]
               if(relative_piece_position = relative_position(cpp, move_y, move_x)) then
                 # THIS IS THE YIELD BLOCK - IF YIELD RETURNS FALSE IT BREAKS THE INNER LOOP !!!
-                break unless block.call(relative_piece_position)
+                break unless block.call(cpp, relative_piece_position)
               end
             end
           end
