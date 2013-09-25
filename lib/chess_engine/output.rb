@@ -30,14 +30,20 @@ module ChessEngine
       # generate string
       rows    = (1..8).to_a.collect { |r| r.to_s }
       columns = (?a..?h).to_a
+
+      # - bring rows and cols in the right position for color
       if self.color == COLORS[0] then
         rows.reverse!
       else
         columns.reverse!
       end
+
+      # - create head
       divide_line   = "  " + "+---"*8 + "+\r\n"
       result_string = "    " + columns.join('   ') + "\r\n"
       result_string += divide_line
+
+      # - iterate over gamelines
       rows.each do |row|
         collected_collumns = []
         columns.each do |column|
@@ -45,7 +51,10 @@ module ChessEngine
         end
         result_string += "#{ row } |" + collected_collumns.join('|') + "| #{ row }\r\n" + divide_line
       end
+
+      # last column description (a..h)
       result_string += "    " + columns.join('   ')
+      
       return result_string
     end
   end
