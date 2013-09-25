@@ -30,7 +30,7 @@ module ChessEngine
       # generate string
       rows    = (1..8).to_a.collect { |r| r.to_s }
       columns = (?a..?h).to_a
-      if @history.count.even? then
+      if self.color == :white then
         rows.reverse!
       else
         columns.reverse!

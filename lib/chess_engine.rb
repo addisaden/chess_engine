@@ -1,10 +1,12 @@
 require "chess_engine/version"
 require "chess_engine/constants"
+require "chess_engine/helper"
 require "chess_engine/position"
 require "chess_engine/output"
 
 module ChessEngine
   class Game
+    include ChessEngine::Helper
     include ChessEngine::Position
     include ChessEngine::Output
 
