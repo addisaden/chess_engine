@@ -21,9 +21,6 @@ module ChessEngine
       if added_row > 8 or added_row < 0 or added_col > 8 or added_col < 0 then
         return nil
       end
-
-      binding.pry
-
       return "#{ cols[added_col] }#{ rows[added_row] }".to_sym
     end
 
