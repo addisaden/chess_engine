@@ -15,7 +15,7 @@ module ChessEngine
       @history = []
 
       # setup plain pieces
-      [:black, :white].each do |color|
+      COLORS.each do |color|
         @pieces[color] = {}
         SHORTNAME.keys.each do |piece|
           @pieces[color][piece] = []
@@ -29,13 +29,13 @@ module ChessEngine
 
     def standard_setup
       # setup pawns
-      { :black => 7, :white => 2 }.each do |color, row|
+      [COLORS, [2,7]].transpose.each do |color, row|
         (?a..?h).each do |column|
           @pieces[color][:pawn] << ["#{ column }#{ row }".to_sym]
         end
       end
 
-      { :black => 8, :white => 1 }.each do |color, row|
+      [COLORS, [1,8]].transpose.each do |color, row|
         # setup king
         @pieces[color][:king] << ["e#{ row }".to_sym]
 

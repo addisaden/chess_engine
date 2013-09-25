@@ -18,7 +18,7 @@ module ChessEngine
         color = value[:color]
         piece = value[:piece]
         piece_tag = "<%s>"
-        piece_tag = ">%s<" if color == :black
+        piece_tag = ">%s<" if color == COLORS[1]
         if current_field = field_result[position[1]][position[0]] then
           raise "ChessEngine::Game#to_s - Feld ist schon belegt: #{ position } - #{ current_field }"
         end
@@ -30,7 +30,7 @@ module ChessEngine
       # generate string
       rows    = (1..8).to_a.collect { |r| r.to_s }
       columns = (?a..?h).to_a
-      if self.color == :white then
+      if self.color == COLORS[0] then
         rows.reverse!
       else
         columns.reverse!

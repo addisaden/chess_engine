@@ -8,4 +8,6 @@ module ChessEngine
     :knight => :N,
     :pawn => :P
   }
+
+  COLORS = [:white, :black]
 end
