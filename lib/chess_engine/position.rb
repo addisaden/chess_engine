@@ -18,10 +18,10 @@ module ChessEngine
       current_col = cols.index(field_symbol[0]) # x
       added_row = current_row + relative_y
       added_col = current_col + relative_x
-      if added_row > 8 or added_row < 0 or added_col > 8 or added_col < 0 then
+      if added_row > 7 or added_row < 0 or added_col > 7 or added_col < 0 then
         return nil
       end
-      return "#{ cols[added_col] }#{ rows[added_row] }".to_sym
+      return "#{ cols[added_col] || 'ERROR: ' + added_col.to_s }#{ rows[added_row] || 'ERROR: ' + added_row.to_s }".to_sym
     end
 
     def positions

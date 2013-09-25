@@ -2,12 +2,14 @@ require "chess_engine/version"
 require "chess_engine/constants"
 require "chess_engine/helper"
 require "chess_engine/position"
+require "chess_engine/possible_moves"
 require "chess_engine/output"
 
 module ChessEngine
   class Game
     include ChessEngine::Helper
     include ChessEngine::Position
+    include ChessEngine::PossibleMoves
     include ChessEngine::Output
 
     def initialize(plain=false)
