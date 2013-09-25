@@ -14,23 +14,17 @@ module ChessEngine
       end
 
       # push fields to field_result
-      @pieces.each do |color, pieces|
-        figure_tag = "<%s>"
-        figure_tag = ">%s<" if color == :black
-        pieces.each do |figure, positions|
-          positions.each do |figure_history|
-            last_position = figure_history.last.to_s
-            if last_position =~ /[a-h][1-8]/ then
-              pos_field = field_result[last_position[1]][last_position[0]]
-              if pos_field
-                raise "ChessEngine::Game#to_s Feld ist schon belegt: #{ last_position } - #{ pos_field }"
-              end
-              figure_name = SHORTNAME[figure]
-              figure_name = '-' if figure_name == :P
-              field_result[last_position[1]][last_position[0]] = (figure_tag % figure_name.to_s)
-            end
-          end
+      self.positions.each do |position, value|
+        color = value[:color]
+        piece = value[:piece]
+        piece_tag = "<%s>"
+        piece_tag = ">%s<" if color == :black
+        if current_field = field_result[position[1]][position[0]] then
+          raise "ChessEngine::Game#to_s - Feld ist schon belegt: #{ position } - #{ current_field }"
         end
+        piece_name = SHORTNAME[piece]
+        piece_name = '-' if piece_name == :P
+        field_result[position[1]][position[0]] = (piece_tag % piece_name)
       end
 
       # generate string
